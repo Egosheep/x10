@@ -14,7 +14,7 @@ void testProgram()
 	Serial* SP = new Serial("\\\\.\\COM3");    // adjust as needed
 
 	if (SP->IsConnected())
-		printf("We're connected \n");
+	cout << "We're connected" << endl;
 
 	char incomingData[256] = "";
 	char sendData[256] = "";
@@ -31,7 +31,7 @@ void testProgram()
 
 		SP->WriteData(sendData, dataLength);
 
-		readResult = SP->ReadData(incomingData, dataLength);
+		//readResult = SP->ReadData(incomingData, dataLength);
 		// printf("Bytes read: (0 means no data available) %i\n",readResult);
 		incomingData[readResult] = 0;
 
@@ -50,7 +50,6 @@ void testProgram()
 int _tmain(int argc, _TCHAR* argv[])
 {
 	
-
 	char Valg;
 	string confCode;
 	string confCode_ = "1234";
