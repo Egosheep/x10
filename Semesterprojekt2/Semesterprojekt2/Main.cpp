@@ -9,66 +9,66 @@
 using namespace std;
 
 
-void testProgram()
-{
-	Serial* SP = new Serial("\\\\.\\COM3");    // adjust as needed
-
-	if (SP->IsConnected())
-	cout << "We're connected" << endl;
-
-	char incomingData[256] = "";
-	char sendData[256] = "";
-	//string sendData;// don't forget to pre-allocate memory
-	//printf("%s\n",incomingData);
-	int dataLength = 255;
-	int readResult = 0;
-
-
-	while (SP->IsConnected())
-	{
-
-		cin >> sendData;
-
-		SP->WriteData(sendData, dataLength);
-
-		//readResult = SP->ReadData(incomingData, dataLength);
-		// printf("Bytes read: (0 means no data available) %i\n",readResult);
-		incomingData[readResult] = 0;
-
-		/*cin >> sendData;
-
-		SP->WriteData(&sendData, sendData.size());*/
-
-		printf("%s", incomingData);
-
-
-	}
-}
-
 
 // application reads from the specified serial port and reports the collected data
-int _tmain(int argc, _TCHAR* argv[])
+int main()
 {
-	
-	char Valg;
-	string confCode;
-	string confCode_ = "1234";
+	char choice = 0;
+	Serial* SP = new Serial("\\\\.\\COM4");    // adjust as needed
 
-	cout << "Velkommen til login screen for installat\x9Br PC - Sikkerhedsssystem" << endl;
-	Sleep(4000);
+
+	char sendData[1] = "";
+	char incomingData[1] = "";
+	char a[1] = "";
+	char b[1] = "";
+	char c[1] = "";
+	char d[1] = "";
+	int dataLength = 1;
+	int readResult = 0;
+
+	system("cls");
+
+	cout << "Velkommen til login screen for installat\x9Br PC - Sikkerhedsssystem" << endl << "Du er nu tilsluttet systemet." << endl << endl;
+	Sleep(250);
 
 	do
 	{
-		system("cls");
-		cout << "Indtast venligst adgangskode: " << endl;
-		cin >> confCode;
-		if (confCode != confCode_)
-			cout << "Forkert kode" << endl; Sleep(1000);
-	} while (confCode != confCode_);
 
-	system("cls");
-	cout << "Velkommen til Sikkerhedssystemets test program" << endl;
-	Sleep(1000);
+		cout << "Indtast venligst adgangskode: " << endl;
+
+		*a = getch();
+		SP->WriteData(a, dataLength);
+		//Sleep(600);
+		*b = getch();
+		SP->WriteData(b, dataLength);
+		//Sleep(600);
+		*c = getch();
+		SP->WriteData(c, dataLength);
+		//Sleep(600);
+		*d = getch();
+		SP->WriteData(d, dataLength);
+		//Sleep(600);
+
+		readResult = 0;
+		cout << "ok" << endl;
+
+		Sleep(10);
+		readResult = SP->ReadData(incomingData, dataLength);
+		incomingData[readResult] = 0;
+		cout << incomingData[0] << endl;
+
+		if (incomingData[0] == '1')
+		{
+			break;
+		}
+		else if (incomingData[0] == '0')
+		{
+			cout << "Koden forkert" << endl;
+			Sleep(500);
+		}
+
+
+	} while (1);
 
 	do
 	{
@@ -77,29 +77,36 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "\n1. K\x9Br test\n";
 		cout << "\n2. Log ud\n";
 
-		Valg = getch();
+		choice = getch();
 
 		system("cls");
 
-		switch (Valg)
+		Sleep(500);
+
+		switch (choice)
 		{
 		case '1':
-			cout << "HER INDSÆTTES FUNKTION TIL CONF-CODE" << endl;
-			testProgram();
+		{
+			cout << "TEST" << endl;
+			Sleep(1000);
 			break;
+		}
+
 		case '2':
 			cout << "Du logges nu ud" << endl;
+			SP->~Serial();
 			exit(1);
 			break;
 		default:
-			cout << "\nDu har tastet forkert\n";
+			cout << "\nTryk en tast for at vende tilbage til menuen\n";
+			getch();
+			system("cls");
 			Sleep(1000);
 		}
 
 
 	} while (true);
 
-	
 	return 0;
 }
 
