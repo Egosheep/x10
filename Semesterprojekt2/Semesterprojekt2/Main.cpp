@@ -8,13 +8,27 @@
 
 using namespace std;
 
-
+void SendBesked(Serial* ref, char* a, char* b, char* c, char* d, int length)
+{
+	*a = getch();
+	cout << "*";
+	ref->WriteData(a, length);
+	*b = getch();
+	cout << "*";
+	ref->WriteData(b, length);
+	*c = getch();
+	cout << "*";
+	ref->WriteData(c, length);
+	*d = getch();
+	cout << "*" << endl;;
+	ref->WriteData(d, length);
+}
 
 // application reads from the specified serial port and reports the collected data
 int main()
 {
 	char choice = 0;
-	Serial* SP = new Serial("\\\\.\\COM4");    // adjust as needed
+	Serial* SP = new Serial("\\\\.\\COM3");    // adjust as needed
 
 
 	char sendData[1] = "";
@@ -35,22 +49,33 @@ int main()
 	{
 
 		cout << "Indtast venligst adgangskode: " << endl;
+		/*char a[1] = "";
+		char b[1] = "";
+		char c[1] = "";
+		char d[1] = "";*/
 
-		*a = getch();
+		/**a = '1';
+		*b = '2';
+		*c = '3';
+		*d ='4';*/
+
+		/*char *a = "";
+		*a = '1';
+		char *b = "";
+		*b = '2';
+		char *c = "";
+		*c = '3';
+		char *d = "";
+		*d = '4';
+
 		SP->WriteData(a, dataLength);
-		//Sleep(600);
-		*b = getch();
 		SP->WriteData(b, dataLength);
-		//Sleep(600);
-		*c = getch();
 		SP->WriteData(c, dataLength);
-		//Sleep(600);
-		*d = getch();
-		SP->WriteData(d, dataLength);
-		//Sleep(600);
+		SP->WriteData(d, dataLength);*/
+
+		SendBesked(SP, a, b, c, d, dataLength); //Send message and type code
 
 		readResult = 0;
-		cout << "ok" << endl;
 
 		Sleep(10);
 		readResult = SP->ReadData(incomingData, dataLength);
