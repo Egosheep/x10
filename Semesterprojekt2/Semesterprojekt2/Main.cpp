@@ -28,7 +28,7 @@ void SendBesked(Serial* ref, char* a, char* b, char* c, char* d, int length)
 int main()
 {
 	char choice = 0;
-	Serial* SP = new Serial("\\\\.\\COM3");    // adjust as needed
+	Serial* SP = new Serial("\\\\.\\COM4");    // adjust as needed
 
 
 	char sendData[1] = "";
@@ -49,30 +49,7 @@ int main()
 	{
 
 		cout << "Indtast venligst adgangskode: " << endl;
-		/*char a[1] = "";
-		char b[1] = "";
-		char c[1] = "";
-		char d[1] = "";*/
-
-		/**a = '1';
-		*b = '2';
-		*c = '3';
-		*d ='4';*/
-
-		/*char *a = "";
-		*a = '1';
-		char *b = "";
-		*b = '2';
-		char *c = "";
-		*c = '3';
-		char *d = "";
-		*d = '4';
-
-		SP->WriteData(a, dataLength);
-		SP->WriteData(b, dataLength);
-		SP->WriteData(c, dataLength);
-		SP->WriteData(d, dataLength);*/
-
+	
 		SendBesked(SP, a, b, c, d, dataLength); //Send message and type code
 
 		readResult = 0;

@@ -1,4 +1,4 @@
-﻿Build started 13-05-2016 09:40:55.
+﻿Build started 15-05-2016 09:51:00.
      1>Project "C:\Users\Emil\Desktop\GIT\x10\Semesterprojekt2\Semesterprojekt2\Semesterprojekt2.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
@@ -23,4 +23,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.12
+Time Elapsed 00:00:05.11
