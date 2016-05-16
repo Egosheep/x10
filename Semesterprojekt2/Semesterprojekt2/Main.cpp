@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void SendBesked(Serial* ref, char* a, char* b, char* c, char* d, int length)
+void sendMessage(Serial* ref, char* a, char* b, char* c, char* d, int length)
 {
 	*a = getch();
 	cout << "*";
@@ -50,7 +50,7 @@ int main()
 
 		cout << "Indtast venligst adgangskode: " << endl;
 	
-		SendBesked(SP, a, b, c, d, dataLength); //Send message and type code
+		sendMessage(SP, a, b, c, d, dataLength); //Send message and type code
 
 		readResult = 0;
 
