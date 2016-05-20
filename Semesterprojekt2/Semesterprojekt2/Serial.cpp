@@ -5,8 +5,8 @@ Serial::Serial(char* portName)
 	//We're not yet connected
 	this->connected = false;
 
-	//Try to connect to the given port throuh CreateFile
-	//Generic acces is to specify the type of access you need
+	//Try to connect to the given port through CreateFile
+	//Generic access is to specify the type of access you need
 	//to open a "Handle" object. (Look at header file)
 
 	//Function "CreatFile" is to create and open the I/O device
@@ -48,7 +48,6 @@ Serial::Serial(char* portName)
 		//Basicly the UART specification
 		DCB dcbSerialParams = { 0 };
 
-		//Try to get the current
 		//Checks if the current parameters of the device is valid
 		//If not display error
 		if (!GetCommState(this->hSerial, &dcbSerialParams))
@@ -69,6 +68,7 @@ Serial::Serial(char* portName)
 			//reset upon establishing a connection
 			dcbSerialParams.fDtrControl = DTR_CONTROL_ENABLE;
 
+
 			//Set the parameters and check for their proper application
 			//Basicly check if the parameters can be set for the device
 			if (!SetCommState(hSerial, &dcbSerialParams))
@@ -83,7 +83,6 @@ Serial::Serial(char* portName)
 			}
 		}
 	}
-
 }
 
 Serial::~Serial()
@@ -123,7 +122,7 @@ bool Serial::WriteData(char *buffer, unsigned int nbChar)
 		return false;
 	}
 	else
-		return true;
+	return true;
 }
 
 bool Serial::IsConnected()
@@ -131,8 +130,6 @@ bool Serial::IsConnected()
 	//Simply return the connection status
 	return this->connected;	
 }
-
-
 
 int Serial::ReadData(char *buffer, unsigned int nbChar)
 {
@@ -151,20 +148,13 @@ int Serial::ReadData(char *buffer, unsigned int nbChar)
 		//of characters, if not we'll read only the available characters to prevent
 		//locking of the application.
 		if (this->status.cbInQue>nbChar)
-		{
 			toRead = nbChar;
-		}
 		else
-		{
 			toRead = this->status.cbInQue;
-		}
 
 		//Try to read the require number of chars, and return the number of read bytes on success
 		if (ReadFile(this->hSerial, buffer, toRead, &bytesRead, NULL))
-		{
 			return bytesRead;
-		}
-
 	}
 
 	//If nothing has been read, or that an error was detected return 0

@@ -24,12 +24,10 @@ void sendMessage(Serial* ref, char* a, char* b, char* c, char* d, int length)
 	ref->WriteData(d, length);
 }
 
-// application reads from the specified serial port and reports the collected data
 int main()
 {
 	char choice = 0;
 	Serial* SP = new Serial("\\\\.\\COM4");    // adjust as needed
-
 
 	char sendData[1] = "";
 	char incomingData[1] = "";
@@ -37,6 +35,7 @@ int main()
 	char b[1] = "";
 	char c[1] = "";
 	char d[1] = "";
+	char test[1] = "";
 	int dataLength = 1;
 	int readResult = 0;
 
@@ -72,7 +71,7 @@ int main()
 
 	} while (1);
 
-	do
+	do //InitConsole funktion
 	{
 		system("cls");
 		cout << "\nDu har nu f\x9Blgende muligheder (tast 1 eller 2).\n";
@@ -90,6 +89,8 @@ int main()
 		case '1':
 		{
 			cout << "TEST" << endl;
+			*test = getch();
+			SP->WriteData(test, dataLength);
 			Sleep(1000);
 			break;
 		}

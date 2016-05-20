@@ -15,7 +15,7 @@ class Serial
 {
 private:
 	
-	HANDLE hSerial; //Serial commmunication handler .
+	HANDLE hSerial; //Serial commmunication handler.
 	//The idea is that they provide an abstraction of a resource, (Integer)
 	//so you don't need to know much about the resource itself to use it.
 	
@@ -35,11 +35,7 @@ public:
 	//---------------READDATA------------//
 
 	int ReadData(char *buffer, unsigned int nbChar);
-	//Read data in a buffer, if nbChar is greater than the
-	//maximum number of bytes available, it will return only the
-	//bytes available. The function return -1 when nothing could
-	//be read, the number of bytes actually read.
-
+	
 	//----------------------------------//
 
 	bool WriteData(char *buffer, unsigned int nbChar);
